@@ -8,9 +8,10 @@
 DISTNAME=	BOLT-LMM_v${PORTVERSION}
 PKGNAME=	bolt-lmm-${PORTVERSION}
 CATEGORIES=	biology
-MASTER_SITES=	https://data.broadinstitute.org/alkesgroup/BOLT-LMM/downloads/
+MASTER_SITES=	https://data.broadinstitute.org/alkesgroup/BOLT-LMM/downloads/ \
+		https://data.broadinstitute.org/alkesgroup/BOLT-LMM/downloads/old/
 
-MAINTAINER=	bacon4000@gmail.com
+MAINTAINER=	bacon@NetBSD.org
 HOMEPAGE=	https://data.broadinstitute.org/alkesgroup/BOLT-LMM/
 COMMENT=	Statistics for testing association between phenotype and genotypes
 
@@ -40,9 +41,8 @@ post-install:
 	${CHMOD} a+x ${DESTDIR}${PREFIX}/${EXAMPLESDIR}/*.sh
 	${CHMOD} g-w ${DESTDIR}${PREFIX}/${EXAMPLESDIR}/*
 
-# FIXME: Use openblas when available for better performance
 .include "../../math/nlopt/buildlink3.mk"
-.include "../../wip/openblas/buildlink3.mk"
+.include "../../wip/openblas-devel/buildlink3.mk"
 .include "../../math/lapack/buildlink3.mk"
 .include "../../devel/boost-libs/buildlink3.mk"
 .include "../../devel/zlib/buildlink3.mk"

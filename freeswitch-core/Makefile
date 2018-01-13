@@ -12,12 +12,12 @@ COMMENT=	FreeSwitch SoftSwitch
 LICENSE=	mpl-1.1
 
 GNU_CONFIGURE=		yes
-USE_LIBTOOL=		yes
-LIBTOOL_OVERRIDE=	libtool */libtool */*/libtool */*/*/libtool
 USE_LANGUAGES=		c c++
 USE_TOOLS+=		aclocal automake autoconf gmake perl pkg-config bash
 
 BUILD_DEFS+=		VARBASE
+
+.include "../../wip/freeswitch-core/options.mk"
 
 CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--exec-prefix=${PREFIX}/bin
@@ -41,9 +41,7 @@ CONFIGURE_ARGS+=	--with-dbdir=${VARBASE}/db/freeswitch
 CONFIGURE_ARGS+=	--with-imagesdir=${PREFIX}/share/freeswitch/images
 CONFIGURE_ARGS+=	--with-recordingsdir=${PREFIX}/freeswitch/recordings
 CONFIGURE_ARGS+=	--with-modinstdir=${PREFIX}/freeswitch/modules
-CONFIGURE_ARGS+=	--enable-zrtp
-CONFIGURE_ARGS+=	--enable-core-pgsql-support
-CONFIGURE_ARGS+=	--enable-xmlrpc-c
+CONFIGURE_ARGS+=	--disable-libvpx
 CONFIGURE_ARGS+=	--enable-64
 
 REPLACE_PERL+=		scripts/rss/*.pl
@@ -144,6 +142,15 @@ DEPENDS+=        	libyaml-[0-9]*:../../textproc/libyaml
 
 .include "../../mk/bsd.prefs.mk"
 
+.if !empty(PKGSRC_COMPILER:Mclang)
+USE_LIBTOOL=		yes
+LIBTOOL_OVERRIDE=	libtool */libtool */*/libtool */*/*/libtool
+
+BUILDLINK_TRANSFORM+=	rm:-Werror
+CFLAGS+=        	-Wno-c11-extensions -Wno-deprecated-declarations \
+			-Wno-zero-length-array -Wno-incompatible-pointer-types
+.endif
+
 FS_USER?=		freeswitch
 FS_GROUP?=		freeswitch
 PKG_USERS_VARS=		FS_USER
@@ -154,21 +161,62 @@ PKG_USERS=		${FS_USER}:${FS_GROUP}
 PKG_GECOS.${FS_USER}=	FreeSWITCH
 PKG_SHELL.${FS_USER}=	${NOLOGIN}
 
-MAKE_DIRS+=		${VARBASE}/log/freeswitch
-MAKE_DIRS+=		${VARBASE}/db/freeswitch
-MAKE_DIRS_PERMS+=	${VARBASE}/log/freeswitch ${FS_USER} ${FS_GROUP} 0644
-MAKE_DIRS_PERMS+=	${VARBASE}/db/freeswitch ${FS_USER} ${FS_GROUP} 0755
-OWN_DIRS=		${PREFIX}/freeswitch
-OWN_DIRS+=		${PREFIX}/share/freeswitch
-OWN_DIRS_PERMS+=	${PREFIX}/freeswitch ${FS_USER} ${FS_GROUP} 0755
-OWN_DIRS_PERMS+=	${PREFIX}/share/freeswitch ${FS_USER} ${FS_GROUP} 0755
+MAKE_DIRS+=		${PREFIX}/freeswitch
+MAKE_DIRS+=		${PREFIX}/share/freeswitch
+MAKE_DIRS_PERMS+=	${PREFIX}/freeswitch ${FS_USER} ${FS_GROUP} 0755
+MAKE_DIRS_PERMS+=	${PREFIX}/share/freeswitch ${FS_USER} ${FS_GROUP} 0755
+
+OWN_DIRS=		${VARBASE}/log/freeswitch
+OWN_DIRS+=		${VARBASE}/db/freeswitch
+OWN_DIRS_PERMS+=	${VARBASE}/log/freeswitch ${FS_USER} ${FS_GROUP} 0644
+OWN_DIRS_PERMS+=	${VARBASE}/db/freeswitch ${FS_USER} ${FS_GROUP} 0755
 
 PKG_SYSCONFSUBDIR=	freeswitch
 PKG_SYSCONFDIR_PERMS=	${FS_USER} ${FS_GROUP} 0755
 
-BUILDLINK_TRANSFORM+=	rm:-Werror
-CFLAGS+=        	-Wno-c11-extensions -Wno-deprecated-declarations \
-			-Wno-zero-length-array -Wno-incompatible-pointer-types
+#############################################################
+# WIP: Use of CONF_FILES according to pkgsrc best practices #
+#############################################################
+
+#EGDIR=		${PREFIX}/share/examples/freeswitch
+
+#CONF_FILES+=	${EGDIR}/extensions.conf ${PKG_SYSCONFDIR}/extensions.conf
+#CONF_FILES+=	${EGDIR}/freetdm.conf ${PKG_SYSCONFDIR}/freetdm.conf
+#CONF_FILES+=	${EGDIR}/magic ${PKG_SYSCONFDIR}/magic
+#CONF_FILES+=	${EGDIR}/freeswitch.xml ${PKG_SYSCONFDIR}/freeswitch.xml
+#CONF_FILES+=	${EGDIR}/vars.xml ${PKG_SYSCONFDIR}/vars.xml
+
+#CONF_FILES+=	${EGDIR}/chatplan/default.xml ${PKG_SYSCONFDIR}/chatplan/default.xml
+#CONF_FILES+=	${EGDIR}/dialplan/empty.xml ${PKG_SYSCONFDIR}/dialplan/empty.xml
+#CONF_FILES+=	${EGDIR}/directory/empty.xml ${PKG_SYSCONFDIR}/directory/empty.xml
+
+#.for a in alsa blacklist cdr_mongodb cdr_pg_csv cdr_sqlite \
+#	cepstral conference.conf console db dialplan_directory \
+#	dingaling directory distributor easyroute enum erlang_event \
+#	event_multicast event_socket fax fifo freetdm hash httapi http_cache \
+#	ivr java json_cdr lcr local_stream logfile lua modules mongo \
+#	nibblebill opal osp perl pocketsphinx portaudio post_load_modules \
+#	presence_map python redis rss rtmp sangoma_codec shout skinny sofia \
+#	spandsp spidermonkey switch syslog timezones translate tts_commandline \
+#	unicall unimrcp verto voicemail voicemail_ivr xml_cdr xml_curl \
+#	xml_rpc zeroconf
+#CONF_FILES+=	${EGDIR}/autoload_configs/${a}.conf.xml \
+	${PKG_SYSCONFDIR}/autoload_configs/${a}.conf.xml
+#.endfor
+
+#.for b in default 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009 1010 \
+	1011 1012 1013 1014 1015 1016 1017 1018 1019 example.com brian \
+	skinny-example
+#CONF_FILES+=	${EGDIR}/directory/default/${b}.xml \
+	${PKG_SYSCONFDIR}/directory/default/${b}.xml
+#.endfor
+
+#############################################################
+
+#.if !empty(PKGSRC_COMPILER:Mgcc)
+pre-configure:
+	cd ${WRKSRC} && ${SH} rebootstrap.sh -j
+#.endif
 
 post-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libs/srtp/libsrtp.la ${DESTDIR}${PREFIX}/lib
@@ -177,7 +225,6 @@ post-install:
 	${LIBTOOL} --mode=install ${INSTALL_LIB} ${WRKSRC}/libs/tiff-4.0.2/libtiff/libtiffxx.la ${DESTDIR}${PREFIX}/lib
 	${LIBTOOL} --finish ${PREFIX}/lib
 
-.include "../../mk/pgsql.buildlink3.mk"
 .include "../../mk/jpeg.buildlink3.mk"
 .include "../../devel/pcre/buildlink3.mk"
 .include "../../devel/libmemcached/buildlink3.mk"
@@ -186,7 +233,6 @@ post-install:
 .include "../../graphics/freetype2/buildlink3.mk"
 .include "../../audio/libsndfile/buildlink3.mk"
 .include "../../net/ldns/buildlink3.mk"
-.include "../../www/curl/buildlink3.mk"
 .include "../../audio/speexdsp/buildlink3.mk"
 .include "../../audio/mpg123/buildlink3.mk"
 .include "../../audio/libopus/buildlink3.mk"
@@ -195,7 +241,6 @@ post-install:
 .include "../../databases/sqlite3/buildlink3.mk"
 .include "../../devel/libltdl/buildlink3.mk"
 .include "../../devel/libuuid/buildlink3.mk"
-#.include "../../wip/libzrtp/buildlink3.mk"
 .include "../../mk/pthread.buildlink3.mk"
 .include "../../mk/dlopen.buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"

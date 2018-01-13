@@ -5,6 +5,7 @@ BSNES_PROFILE=	balanced
 .include "Makefile.common"
 
 PKGNAME=	${DISTNAME}
-COMMENT=	Libretro core for balanced SNES/Super Famicom emulation
+HOMEPAGE=	https://docs.libretro.com/library/bsnes_mercury_balanced/
+COMMENT=	Libretro core for SNES/Super Famicom emulation ("balanced" profile)
 
 .include "../../mk/bsd.pkg.mk"
