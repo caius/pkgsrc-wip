@@ -15,15 +15,21 @@ USE_TOOLS+=	msgmerge
 
 .include "../../mk/bsd.prefs.mk"
 
-PLIST_VARS+=	utempter noutempter
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	post-patch
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{AUTOSTART_INSTALL_DIR}:{KDE_INSTALL_AUTOSTARTEXDIR}:'
+
+PLIST_VARS+=		utempter noutempter
 .if ${OPSYS} == "Linux" && exists(/usr/include/utempter.h)
 PLIST.utempter=		yes
 .elif ${OPSYS} == "FreeBSD" && exists(/usr/include/utempter.h)
 PLIST.utempter=		yes
 .else
 PLIST.noutempter=	yes
-CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/autostart/kwrited-autostart.desktop \
-		${PKG_SYSCONFDIR}/xdg/autostart/kwrited-autostart.desktop
+CONF_FILES+=		${PREFIX}/share/examples/kde-xdg/autostart/kwrited-autostart.desktop \
+			${PKG_SYSCONFDIR}/xdg/autostart/kwrited-autostart.desktop
 .endif
 
 .include "../../sysutils/kdbusaddons/buildlink3.mk"

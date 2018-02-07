@@ -11,11 +11,11 @@ HOMEPAGE=	http://www.aolserver.com/
 COMMENT=	Postgres database access module for aolserver
 
 
-MAKE_FLAGS+=	POSTGRES=${PREFIX:Q} INST=/${PREFIX:Q}/include/nsd \
+MAKE_FLAGS+=	POSTGRES=${PREFIX} INST=/${PREFIX}/include/nsd \
 		TCL_CC=gcc
 CFLAGS+=	-I/usr/pkg/include/nsd/include
 
-USE_TOOLS+=         gmake
+USE_TOOLS+=	gmake
 
 .include "../../wip/aolserver4/buildlink3.mk"
 .include "../../mk/pgsql.buildlink3.mk"

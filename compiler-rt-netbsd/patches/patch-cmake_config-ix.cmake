@@ -1,6 +1,6 @@
 $NetBSD$
 
---- cmake/config-ix.cmake.orig	2018-01-08 15:33:13.000000000 +0000
+--- cmake/config-ix.cmake.orig	2018-02-01 23:45:59.000000000 +0000
 +++ cmake/config-ix.cmake
 @@ -542,7 +542,7 @@ else()
  endif()
@@ -15,8 +15,8 @@ $NetBSD$
  endif()
  
  if (COMPILER_RT_HAS_SANITIZER_COMMON AND SCUDO_SUPPORTED_ARCH AND
--    OS_NAME MATCHES "Linux|Android")
-+    OS_NAME MATCHES "Linux|Android|NetBSD")
+-    OS_NAME MATCHES "Linux|Android|Fuchsia")
++    OS_NAME MATCHES "Linux|Android|Fuchsia|NetBSD")
    set(COMPILER_RT_HAS_SCUDO TRUE)
  else()
    set(COMPILER_RT_HAS_SCUDO FALSE)

@@ -11,12 +11,12 @@ COMMENT=	Small HTTP server
 LICENSE=	gnu-gpl-v2
 
 PKG_SYSCONFSUBDIR=	boa
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--disable-debug
-EGDIR=		${PREFIX}/share/examples/boa
-GNU_CONFIGURE=	YES
-USE_TOOLS+=	gmake lex
-USE_FEATURES+=	snprintf
+EGDIR=			${PREFIX}/share/examples/boa
+GNU_CONFIGURE=		YES
+USE_TOOLS+=		gmake lex
+USE_FEATURES+=		snprintf
 
 .include "../../mk/bsd.prefs.mk"
 

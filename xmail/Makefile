@@ -13,28 +13,28 @@ LICENSE=	gnu-gpl-v2
 USE_LANGUAGES=	c c++
 USE_TOOLS+=	gmake
 
-MAKE_ENV+=	OSTYPE=${OPSYS:Q}
+MAKE_ENV+=	OSTYPE=${OPSYS}
 
 .include "../../mk/bsd.prefs.mk"
 
 EXT=bsd # Default one :)
 .if ${OPSYS} == "Linux"
-.	if   ${MACHINE_ARCH} == "i86pc"
+.  if   ${MACHINE_ARCH} == "i86pc"
 		EXT="lnx"
-.	elif ${MACHINE_ARCH} == "sparc"
+.  elif ${MACHINE_ARCH} == "sparc"
 		EXT="slx"
-.	elif ${MACHINE_ARCH} == "ppc"
+.  elif ${MACHINE_ARCH} == "ppc"
 		EXT="plx"
-.	endif
+.  endif
 .elif ${OPSYS} == "SunOS"
-.	if   ${MACHINE_ARCH} == "sparc"
+.  if   ${MACHINE_ARCH} == "sparc"
 		EXT="sso"
-.	elif ${MACHINE_ARCH} == "i86pc"
+.  elif ${MACHINE_ARCH} == "i86pc"
 		EXT="ssx"
-.	endif
+.  endif
 .endif
 
-MAKE_FILE=Makefile.${EXT}
+MAKE_FILE=	Makefile.${EXT}
 
 INSTALLATION_DIRS+=	libexec/${PKGBASE} sbin share/doc/${PKGBASE}
 

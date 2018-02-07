@@ -1,12 +1,12 @@
 # $NetBSD$
 
-DISTNAME=	toxcore-0.1.3
+DISTNAME=	toxcore-0.2.0
 CATEGORIES=	chat
 MASTER_SITES=	${MASTER_SITE_GITHUB:=toktok/}
 
 GIT_REPOSITORIES=	c-toxcore
 GIT_REPO.c-toxcore=	http://github.com/toktok/c-toxcore.git
-WRKSRC=	${WRKDIR}/c-toxcore
+WRKSRC=			${WRKDIR}/c-toxcore
 
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	https://tox.chat/

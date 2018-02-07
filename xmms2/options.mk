@@ -81,7 +81,7 @@ WITHOUT_PLUGINS+=	flac
 .endif
 
 .if !empty(PKG_OPTIONS:Mgamin)
-BUILD_DEPENDS+=	gamin-[0-9]*:../../sysutils/gamin
+BUILD_DEPENDS+=		gamin-[0-9]*:../../sysutils/gamin
 PLIST.gamin=		yes
 .else
 WITHOUT_PLUGINS+=	gamin
@@ -256,7 +256,7 @@ WITHOUT_PLUGINS+=	tremor
 .endif
 
 .if !empty(PKG_OPTIONS:Mvalgrind)
-BUILD_DEPENDS+=	valgrind-[0-9]*:../../devel/valgrind
+BUILD_DEPENDS+=		valgrind-[0-9]*:../../devel/valgrind
 #PLIST.valgrind=	yes
 .endif
 

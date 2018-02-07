@@ -29,7 +29,7 @@ MESSAGE_SRC+=	MESSAGE
 
 .include "../../mk/bsd.prefs.mk"
 
-CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 
 # Prevent the configure script from picking up a per-user tmp
 # directory. See the commit message on revision 1.35
@@ -51,7 +51,7 @@ CONFIGURE_ARGS+=	--enable-static
 #.endif
 
 CONFIGURE_ARGS+=	--with-dbus-user=${DBUS_USER}
-CONFIGURE_ARGS+=	--with-test-socket-dir=${WRKDIR:Q}
+CONFIGURE_ARGS+=	--with-test-socket-dir=${WRKDIR}
 CONFIGURE_ARGS+=	--with-system-pid-file=${VARBASE}/run/dbus/${DBUS_SYSTEM_PID_FILE}
 
 SUBST_CLASSES+=		docbook
@@ -70,7 +70,7 @@ CONFIGURE_ARGS+=	--disable-apparmor
 CONFIGURE_ARGS+=	--disable-systemd
 .endif
 
-PLIST_VARS+=    	linux launchd
+PLIST_VARS+=		linux launchd
 
 DBUS_CONF_DIR=		${PKG_SYSCONFBASE}/dbus-1
 OWN_DIRS+=		${DBUS_CONF_DIR}/services

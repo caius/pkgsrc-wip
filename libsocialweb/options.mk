@@ -3,7 +3,7 @@
 PKG_OPTIONS_VAR=		PKG_OPTIONS.libsocialweb
 PKG_SUPPORTED_OPTIONS+=		facebook flickr lastfm photobucket plurk smugmug
 PKG_SUPPORTED_OPTIONS+=		twitter vimeo youtube sina myspace
-#PKG_SUPPORTED_OPTIONS+=		vala	# XXX broken
+#PKG_SUPPORTED_OPTIONS+=	vala	# XXX broken
 
 PKG_SUGGESTED_OPTIONS+=		facebook flickr lastfm photobucket plurk smugmug
 PKG_SUGGESTED_OPTIONS+=		twitter vimeo youtube sina myspace
@@ -33,7 +33,7 @@ PLIST.lastfm=		yes
 
 .if !empty(PKG_OPTIONS:Mphotobucket)
 CONFIGURE_ARGS+=	--enable-photobucket
-PLIST.photobucket=		yes
+PLIST.photobucket=	yes
 .endif
 
 .if !empty(PKG_OPTIONS:Mplurk)

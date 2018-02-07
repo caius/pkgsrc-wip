@@ -24,10 +24,10 @@ SYSVULNDIR=	${VARBASE}/db
 SCRIPT_DIR=	${PREFIX}/sbin
 FETCH_TOOL=	${FTP}
 
-BUILD_DEFS=	VARBASE
-CONF_FILES+=	${EGDIR}/audit-system.conf ${PKG_SYSCONFDIR}/audit-system.conf
-USE_TOOLS+=	awk cp mv ident chmod mkdir find rm echo
-MAKE_DIRS=	${SYSVULNDIR}
+BUILD_DEFS=		VARBASE
+CONF_FILES+=		${EGDIR}/audit-system.conf ${PKG_SYSCONFDIR}/audit-system.conf
+USE_TOOLS+=		awk cp mv ident chmod mkdir find rm echo
+MAKE_DIRS=		${SYSVULNDIR}
 INSTALLATION_DIRS+=	${PKGMANDIR}/man5 ${PKGMANDIR}/man8 ${EGDIR} sbin
 
 .include "../../mk/bsd.prefs.mk"
@@ -59,9 +59,9 @@ SUBST_SED.tools+=	-e "s|@SCRIPT_DIR@|${SCRIPT_DIR}|g"
 SUBST_SED.tools+=	-e "s|@PKG_SYSCONFDIR@|${PKG_SYSCONFDIR}|g"
 
 do-extract:
-.	for f in ${AS_FILES}
+.for f in ${AS_FILES}
 		${CP} ${FILESDIR}/${f} ${WRKSRC}
-.	endfor
+.endfor
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/audit-system.conf ${DESTDIR}${EGDIR}

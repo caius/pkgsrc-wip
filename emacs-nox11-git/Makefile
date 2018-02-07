@@ -10,7 +10,7 @@ HOMEPAGE=	http://www.gnu.org/software/emacs/emacs.html
 COMMENT=	GNU editing macros (editor, no x11)
 LICENSE=	gnu-gpl-v3
 
-USE_TOOLS+=	gmake makeinfo gzip autoconf automake
+USE_TOOLS+=		gmake makeinfo gzip autoconf automake
 # for example, Mac OS X 10.6.1 has 2.61 which fails
 AUTOCONF_REQUIRED=	2.65
 
@@ -38,22 +38,22 @@ PLIST_SRC=	${PKGDIR}/../emacs-git/PLIST
 WRKSRC=		${WRKDIR}/emacs
 
 CONFIGURE_ARGS+=	--without-x	# nox11
-CONFIGURE_ARGS+=	--srcdir=${WRKSRC:Q}
-CONFIGURE_ARGS+=	--localstatedir=${VARBASE:Q}
+CONFIGURE_ARGS+=	--srcdir=${WRKSRC}
+CONFIGURE_ARGS+=	--localstatedir=${VARBASE}
 CONFIGURE_ENV+=		GAMEOWN=${GAMEOWN:Q}
 
 BUILD_DEFS+=		VARBASE
 BUILD_DEFS+=		GAMEDATAMODE
 
-#SUBST_CLASSES+=			test_equal
-#SUBST_STAGE.test_equal=		pre-configure
+#SUBST_CLASSES+=		test_equal
+#SUBST_STAGE.test_equal=	pre-configure
 #SUBST_MESSAGE.test_equal=	Fixing bashisms in test(1) usage.
-#SUBST_FILES.test_equal=		mac/make-package
+#SUBST_FILES.test_equal=	mac/make-package
 #SUBST_SED.test_equal=		-e 's/ == / = /g'
 
 MAKE_DIRS_PERMS+=	${VARBASE}/games/emacs ${GAMEOWN:Q} ${GAMEGRP} ${GAMEDIRMODE:Q}
-CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/snake-scores ${GAMEOWN:Q} ${GAMEGRP:Q} ${GAMEDATAMODE:Q}
-CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/tetris-scores ${GAMEOWN:Q} ${GAMEGRP:Q} ${GAMEDATAMODE:Q}
+CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/snake-scores ${GAMEOWN:Q} ${GAMEGRP:Q} ${GAMEDATAMODE}
+CONF_FILES_PERMS+=	/dev/null ${VARBASE}/games/emacs/tetris-scores ${GAMEOWN:Q} ${GAMEGRP:Q} ${GAMEDATAMODE}
 
 # build PATH in the dumped emacs is not a problem
 CHECK_WRKREF_SKIP+=	bin/emacs

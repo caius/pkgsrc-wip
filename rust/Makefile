@@ -82,18 +82,19 @@ BUILDLINK_TRANSFORM.NetBSD+=	rm:-Wl,--enable-new-dtags
 .if defined(PLUS_BOOTSTRAPS)
 
 # When adding a target here, also add it to available.mk
-RUST_MACHINES=	i686-apple-darwin \
-		x86_64-apple-darwin \
-		i686-unknown-linux-gnu \
-		x86_64-unknown-linux-gnu \
-		x86_64-unknown-netbsd \
-#		x86_64-sun-solaris
+RUST_MACHINES=		\
+	i686-apple-darwin \
+	x86_64-apple-darwin \
+	i686-unknown-linux-gnu \
+	x86_64-unknown-linux-gnu \
+	x86_64-unknown-netbsd
+#RUST_MACHINES+=	x86_64-sun-solaris
 
-.for MACHINE in ${RUST_MACHINES}
+.  for MACHINE in ${RUST_MACHINES}
 RUSTCS+=	rustc-${RUST_STAGE0_VER}-${MACHINE}.tar.gz
 RUST_STDS+=	rust-std-${RUST_STAGE0_VER}-${MACHINE}.tar.gz
 CARGOS+=	cargo-${CARGO_STAGE0_VER}-${MACHINE}.tar.gz
-.endfor
+.  endfor
 
 DISTFILES+=	${RUSTCS} ${RUST_STDS} ${CARGOS}
 

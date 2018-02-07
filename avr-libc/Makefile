@@ -26,13 +26,13 @@ BUILD_DEPENDS+=		web2c-[0-9]*:../../print/web2c
 # tex not found
 BUILD_DEPENDS+=		tex-tetex-[0-9]*:../../print/tex-tetex
 # mkfmt tex.fmt not found
-#BUILD_DEPENDS+=		teTeX-texmf-[0-9]*:../../print/teTeX3-texmf
+#BUILD_DEPENDS+=	teTeX-texmf-[0-9]*:../../print/teTeX3-texmf
 
 USE_TOOLS+=		gmake perl
 GNU_CONFIGURE=		yes
-USE_GNU_CONFIGURE_HOST= no
+USE_GNU_CONFIGURE_HOST=	no
 
-CONFIGURE_ARGS+=	--build=${MACHINE_GNU_PLATFORM:Q}
+CONFIGURE_ARGS+=	--build=${MACHINE_GNU_PLATFORM}
 CONFIGURE_ARGS+=	--host=avr
 CONFIGURE_ARGS+=	--enable-doc
 CONFIGURE_ARGS+=	--disable-versioned-doc

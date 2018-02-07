@@ -2,9 +2,9 @@
 
 .include "../../mk/bsd.fast.prefs.mk"
 
-PKG_OPTIONS_VAR=	PKG_OPTIONS.retroarch
-PKG_SUPPORTED_OPTIONS+=	sdl2 ffmpeg freetype x11 alsa caca pulseaudio udev
-PKG_SUGGESTED_OPTIONS+=	sdl2 ffmpeg freetype x11
+PKG_OPTIONS_VAR=		PKG_OPTIONS.retroarch
+PKG_SUPPORTED_OPTIONS+=		sdl2 ffmpeg freetype x11 alsa caca pulseaudio udev
+PKG_SUGGESTED_OPTIONS+=		sdl2 ffmpeg freetype x11
 PKG_SUGGESTED_OPTIONS.Linux+=	alsa udev
 PKG_OPTIONS_OPTIONAL_GROUPS+=	gl
 PKG_OPTIONS_GROUP.gl+=		opengl
@@ -34,11 +34,11 @@ PKG_SUGGESTED_OPTIONS+=		opengl
 .include "../../mk/bsd.options.mk"
 
 .if !empty(MACHINE_ARCH:M*arm*)
-.if !empty(PKG_OPTIONS:Msimd)
+.  if !empty(PKG_OPTIONS:Msimd)
 CONFIGURE_ARGS+=	--enable-neon
-.else
+.  else
 CONFIGURE_ARGS+=	--disable-neon
-.endif
+.  endif
 .endif
 
 .if !empty(PKG_OPTIONS:Mopengl)

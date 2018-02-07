@@ -36,8 +36,8 @@ CONFIGURE_ARGS+=	LIBS=${BUILDLINK_LDADD.oss:Q}
 .include "../../mk/oss.buildlink3.mk"
 .endif
 
-CPPFLAGS+=		-DDEVOSSAUDIO=\"${DEVOSSAUDIO:Q}\"
-CPPFLAGS+=		-DDEVOSSSOUND=\"${DEVOSSSOUND:Q}\"
+CPPFLAGS+=		-DDEVOSSAUDIO=\"${DEVOSSAUDIO}\"
+CPPFLAGS+=		-DDEVOSSSOUND=\"${DEVOSSSOUND}\"
 
 SVN_REPOSITORIES=	mpg123
 #SVN_TAG=		{${MPG123_TAG}}
@@ -49,8 +49,8 @@ pre-configure:
 .include "../../wip/mk/svn-package.mk"
 .include "../../mk/bsd.fast.prefs.mk"
 
-#YESTERDAY!=	expr `date +%s` - 86399
-#MPG123_VERSION!=${DATE} -r ${YESTERDAY} +%Y%m%d
-#MPG123_TAG!=	${DATE} +%Y%m%d
+#YESTERDAY!=		expr `date +%s` - 86399
+#MPG123_VERSION!=	${DATE} -r ${YESTERDAY} +%Y%m%d
+#MPG123_TAG!=		${DATE} +%Y%m%d
 
 .include "../../mk/bsd.pkg.mk"

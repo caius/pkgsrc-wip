@@ -21,8 +21,8 @@ USE_TOOLS+=		groff:run
 PKGMANDIR?=		man
 USE_PKGLOCALEDIR=	yes
 HAS_CONFIGURE=		yes
-CONFIGURE_ARGS+=	-confdir ${PKG_SYSCONFDIR} +sgid +traditional
-CONFIGURE_ARGS+=	-prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	-confdir ${PKG_SYSCONFDIR} +sgid +fhs +lang all
+CONFIGURE_ARGS+=	-prefix=${PREFIX}
 CONFIGURE_ARGS+=	-mandir=${PREFIX}/${PKGMANDIR}
 CONFIGURE_ENV+=		deflocale=${PREFIX}/${PKGLOCALEDIR}/locale/
 

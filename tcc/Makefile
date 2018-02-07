@@ -13,8 +13,8 @@ ONLY_FOR_PLATFORM=	*-*-i386
 NOT_FOR_PLATFORM=	NetBSD-1.6.2-*
 
 
-USE_TOOLS+=	gmake
-HAS_CONFIGURE=	yes
+USE_TOOLS+=		gmake
+HAS_CONFIGURE=		yes
 CHECK_PORTABILITY_SKIP=	gcctestsuite.sh
 
 .include "../../mk/bsd.prefs.mk"
@@ -26,6 +26,6 @@ SUBST_STAGE.ldl=	post-patch
 SUBST_SED.ldl=		-e 's,LIBS=,\#LIBS,'
 .endif
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 .include "../../mk/bsd.pkg.mk"

@@ -28,12 +28,12 @@ CONFIGURE_ARGS+=	--enable-targets=all
 # Ensure that --host is not included as default
 CONFIGURE_ARGS+=	--target=i386-linux
 # ./configure.lineno: 3281: Syntax error: "(" unexpected (expecting "fi")
-PKGSRC_MAKE_ENV+=       SH=/bin/ksh
+PKGSRC_MAKE_ENV+=	SH=/bin/ksh
 
 MAKE_ARGS+=		CFLAGS="${CFLAGS}"
 BUILD_TARGET=		all-binutils all-ld
 
-PLIST_SUBST+=		LOCALBASE=${LOCALBASE:Q}
+PLIST_SUBST+=		LOCALBASE=${LOCALBASE}
 
 BINDIR=			${PREFIX}/cross/libexec/binutils
 

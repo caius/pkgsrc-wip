@@ -25,12 +25,12 @@ WITHOUT_PLUGINS=	nms sc68 # XXX Someone, package these!
 
 PLIST_SUBST+=		PERL5_SUB_INSTALLSITEARCHLIB=${PERL5_SUB_INSTALLARCHLIB:S|perl5/|perl5/site_perl/|1}
 
-PY_PATCHPLIST=          yes
+PY_PATCHPLIST=		yes
 
 .include "options.mk"
 
 do-configure:
-	cd ${WRKSRC:Q} && \
+	cd ${WRKSRC} && \
 		${SETENV} ${CONFIGURE_ENV} ${PYTHONBIN} ./waf configure \
 			--destdir=${DESTDIR} --prefix=${PREFIX} \
 			--conf-prefix="${EXTRA_INCLUDES}" \

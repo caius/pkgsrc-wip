@@ -10,9 +10,9 @@ HOMEPAGE=		http://www.haskell.org/haskell-mode/
 COMMENT=		Haskell mode for Emacs
 
 
-MESSAGE_SUBST+=		LISPDIR=${EMACS_LISPPREFIX:Q}
+MESSAGE_SUBST+=		LISPDIR=${EMACS_LISPPREFIX}
 
-SRCS=                   haskell-c.el haskell-cabal.el haskell-decl-scan.el \
+SRCS=			haskell-c.el haskell-cabal.el haskell-decl-scan.el \
 			haskell-doc.el haskell-font-lock.el haskell-ghci.el \
 			haskell-hugs.el haskell-indent.el \
 			haskell-indentation.el haskell-mode.el \

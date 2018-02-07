@@ -16,7 +16,7 @@ USE_LIBTOOL=		yes
 USE_TOOLS+=		gmake
 GNU_CONFIGURE=		yes
 
-CONFIGURE_ARGS+=	--enable-gssapi=${KRB5BASE:Q}
+CONFIGURE_ARGS+=	--enable-gssapi=${KRB5BASE}
 CONFIGURE_ARGS+=	--with-gss_impl=${GSSIMPL.${KRB5_TYPE}}
 GSSIMPL.heimdal=	heimdal
 GSSIMPL.mit-krb5=	mit
@@ -24,10 +24,10 @@ GSSIMPL.mit-krb5=	mit
 CONFIGURE_ARGS+=	--enable-python
 
 BUILDLINK_API_DEPENDS.heimdal+=	heimdal>=0.7
-BUILDLINK_API_DEPENDS.remctl+= remctl>=${PKGVERSION}
+BUILDLINK_API_DEPENDS.remctl+=	remctl>=${PKGVERSION}
 
-PYDISTUTILSPKG=yes
-PYSETUPSUBDIR=python
+PYDISTUTILSPKG=	yes
+PYSETUPSUBDIR=	python
 
 .include "../../lang/python/extension.mk"
 .include "../../wip/remctl/buildlink3.mk"

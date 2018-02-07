@@ -6,8 +6,8 @@ PKG_SUPPORTED_OPTIONS+=	opengl pgsql python sqlite unixodbc
 # PKG_SUPPORTED_OPTIONS+=	ffmpeg		# XXX - handle includes
 # PKG_SUPPORTED_OPTIONS+=	glw		# XXX - requires libGLw(M)
 # PKG_SUPPORTED_OPTIONS+=	wxWidgets	# XXX - need new version
-PKG_SUGGESTED_OPTIONS+= fftw freetype gmath iodbc motif
-PKG_SUGGESTED_OPTIONS+= opengl pgsql python sqlite
+PKG_SUGGESTED_OPTIONS+=	fftw freetype gmath iodbc motif
+PKG_SUGGESTED_OPTIONS+=	opengl pgsql python sqlite
 
 .include "../../mk/bsd.options.mk"
 
@@ -79,7 +79,7 @@ CONFIGURE_ARGS+=	--without-motif
 .if !empty(PKG_OPTIONS:Mmysql)
 CONFIGURE_ARGS+=	--with-mysql
 PLIST.mysql=		yes
-. include "../../mk/mysql.buildlink3.mk"
+.  include "../../mk/mysql.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-mysql
 .endif
@@ -95,7 +95,7 @@ CONFIGURE_ARGS+=	--without-opengl
 .if !empty(PKG_OPTIONS:Mpgsql)
 CONFIGURE_ARGS+=	--with-postgres
 PLIST.pgsql=		yes
-. include "../../mk/pgsql.buildlink3.mk"
+.  include "../../mk/pgsql.buildlink3.mk"
 .else
 CONFIGURE_ARGS+=	--without-postgres
 .endif

@@ -268,8 +268,8 @@ _EMACS_TYPE=	${EMACS_TYPE}
 
 EMACS_VERSIONS_ACCEPTED?=	${_EMACS_VERSIONS_ALL}
 .if empty(EMACS_VERSIONS_ACCEPTED:M${_EMACS_TYPE})
-PKG_FAIL_REASON+=	"Accepted versions are: ${EMACS_VERSIONS_ACCEPTED}"
-PKG_FAIL_REASON+=	"No valid Emacs version installed found"
+PKG_FAIL_REASON+=		"Accepted versions are: ${EMACS_VERSIONS_ACCEPTED}"
+PKG_FAIL_REASON+=		"No valid Emacs version installed found"
 .endif
 
 _EMACS_PKGDIR=	${_EMACS_PKGDIR_MAP:M${_EMACS_TYPE}@*:C|${_EMACS_TYPE}@||}
@@ -285,9 +285,9 @@ CONFLICTS+=	${_EMACS_CONFLICTS.${_EMACS_FLAVOR}}
 
 EMACS_MODULES?=
 .for _mod_ in ${EMACS_MODULES}
-.if !empty(_EMACS_PKGDEP.${_mod_})
+.  if !empty(_EMACS_PKGDEP.${_mod_})
 DEPENDS+=	${_EMACS_PKGDEP.${_mod_}}
-.endif
+.  endif
 .endfor
 
 #

@@ -57,7 +57,7 @@ SUBST_STAGE.fix-paths=		pre-configure
 SUBST_MESSAGE.fix-paths=	Fixing absolute paths.
 SUBST_FILES.fix-paths=		install.sh src/runtime/runtime.c doc/sbcl.1
 SUBST_SED.fix-paths=		-e 's,@PREFIX@,${PREFIX},g'
-#SUBST_SED.fix-paths+=           -e 's,/var/log,${VARBASE}/log,g'
+#SUBST_SED.fix-paths+=		-e 's,/var/log,${VARBASE}/log,g'
 
 SUBST_CLASSES+=			fix-gtar
 SUBST_STAGE.fix-gtar=		pre-configure
@@ -73,7 +73,7 @@ post-build:
 	cd ${WRKSRC} && ${RM} -f contrib/sb-cover/test-output/*
 
 do-install:
-	cd ${WRKSRC} && BUILD_ROOT=${DESTDIR:Q} INSTALL_ROOT=${PREFIX:Q} MAN_DIR=${PREFIX:Q}/${PKGMANDIR} ${SH} install.sh
+	cd ${WRKSRC} && BUILD_ROOT=${DESTDIR} INSTALL_ROOT=${PREFIX} MAN_DIR=${PREFIX}/${PKGMANDIR} ${SH} install.sh
 	rm -f $(DESTDIR)$(PREFIX)/lib/sbcl/asdf-install/installer.lisp.orig
 	rm -f $(DESTDIR)$(PREFIX)/lib/sbcl/sb-posix/posix-tests.lisp.orig
 	rm -f $(DESTDIR)$(PREFIX)/lib/sbcl/sb-posix/test-output/write-test.txt

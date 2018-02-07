@@ -16,14 +16,14 @@ USE_LANGUAGES=	# none
 USE_LIBTOOL=	yes
 USE_TOOLS+=	perl:run
 
-REPLACE_PERL=	*.pl
-REPLACE_SH=	mkdep configure
+REPLACE_PERL=		*.pl
+REPLACE_SH=		mkdep configure
 ###
 ### XXX until we have proper glue, take care to set these when
 ###	using this in a package.
 ###
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-libtool=${LIBTOOL:Q}
 ###
 ### XXXX Manual page installation really needs fixing!

@@ -9,7 +9,7 @@ PLIST_VARS+=		gnome jemalloc debug
 .if ${OPSYS} == "Linux"
 PKG_SUGGESTED_OPTIONS+=	alsa mozilla-jemalloc dbus
 .else
-PKG_SUGGESTED_OPTIONS+= pulseaudio dbus
+PKG_SUGGESTED_OPTIONS+=	pulseaudio dbus
 .endif
 
 # On NetBSD/amd64 6.99.21 libxul.so is invalid when --enable-webrtc is set.
@@ -44,12 +44,12 @@ CONFIGURE_ARGS+=	--disable-jemalloc
 
 .include "../../mk/compiler.mk"
 .if !empty(PKGSRC_COMPILER:Mgcc)
-.if ${CC_VERSION:S/gcc-//:S/.//g} >= 480
+.  if ${CC_VERSION:S/gcc-//:S/.//g} >= 480
 # Modern gcc does not run any "tracking" passes when compiling with -O0,
 # which makes the generated debug info mostly useless. So explicitly
 # request them.
 O0TRACKING=-fvar-tracking-assignments -fvar-tracking
-.endif
+.  endif
 .endif
 
 .if !empty(PKG_OPTIONS:Mdebug)
@@ -60,12 +60,12 @@ CONFIGURE_ARGS+=	--enable-debug-js-modules
 CONFIGURE_ARGS+=	--disable-install-strip
 PLIST.debug=		yes
 .else
-.if !empty(PKG_OPTIONS:Mdebug-info)
+.  if !empty(PKG_OPTIONS:Mdebug-info)
 CONFIGURE_ARGS+=	--enable-debug-symbols
 CONFIGURE_ARGS+=	--enable-optimize=-O0
-.else
+.  else
 CONFIGURE_ARGS+=	--disable-debug-symbols
-.endif
+.  endif
 CONFIGURE_ARGS+=	--disable-debug
 CONFIGURE_ARGS+=	--enable-optimize=-O2
 CONFIGURE_ARGS+=	--enable-install-strip

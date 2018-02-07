@@ -6,13 +6,14 @@ PKGNAME=	${PYPKGPREFIX}-aesthete-0.4.1-7
 CATEGORIES=	math python
 MASTER_SITES=	${MASTER_SITE_PYPI:=A/Aesthete/}
 
-MAINTAINER= 	jihbed.research@gmail.com
-HOMEPAGE=       http://www.philtweir.co.uk/aesthete/wiki/pmwiki.php
+MAINTAINER=	jihbed.research@gmail.com
+HOMEPAGE=	http://www.philtweir.co.uk/aesthete/wiki/pmwiki.php
 COMMENT=	Integrated mathematics environment
 LICENSE=	gnu-gpl-v3
 
 DEPENDS+=	linux-libertine-ttf>=5.1.3:../../fonts/linux-libertine-ttf
 DEPENDS+=	${PYPKGPREFIX}-argparse>=1.1:../../devel/py-argparse
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 DEPENDS+=	${PYPKGPREFIX}-scipy>=0.7.2:../../math/py-scipy
 DEPENDS+=	${PYPKGPREFIX}-sympy>=0.6.7:../../math/py-sympy
 DEPENDS+=	${PYPKGPREFIX}-lxml>=2.2.6:../../textproc/py-lxml
@@ -28,7 +29,6 @@ post-extract:
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../graphics/hicolor-icon-theme/buildlink3.mk"
 .include "../../graphics/py-imaging/buildlink3.mk"
-.include "../../graphics/py-matplotlib/buildlink3.mk"
 .include "../../graphics/librsvg/buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../sysutils/desktop-file-utils/desktopdb.mk"

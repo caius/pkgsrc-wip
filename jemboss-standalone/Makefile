@@ -7,15 +7,15 @@ PKGREVISION=		1
 CATEGORIES=		biology
 MASTER_SITES=		ftp://ftp.uk.embnet.org/pub/EMBOSS/old/2.9.0/
 
-MAINTAINER=		dprice@cs.nmsu.edu
-HOMEPAGE=		http://www.emboss.org/
+MAINTAINER=	dprice@cs.nmsu.edu
+HOMEPAGE=	http://www.emboss.org/
 COMMENT=	Standalone Interface for EMBOSS
 
-DEPENDS+=		emboss-java>=0.0.3:../../wip/emboss-java
+DEPENDS+=	emboss-java>=0.0.3:../../wip/emboss-java
 #DEPENDS+=	jakarta-servletapi-[0-9]*:../../www/jakarta-servletapi
-DEPENDS+=		xerces-j>=1.2.0:../../textproc/xerces-j
-#DEPENDS+=		iasp>=2.1.1:../../www/iasp
-DEPENDS+=		apache-ant>=1.5.3.1:../../devel/apache-ant
+DEPENDS+=	xerces-j>=1.2.0:../../textproc/xerces-j
+#DEPENDS+=	iasp>=2.1.1:../../www/iasp
+DEPENDS+=	apache-ant>=1.5.3.1:../../devel/apache-ant
 
 DIST_SUBDIR=		emboss/emboss-2.9.0
 
@@ -90,4 +90,4 @@ post-install:
 .include "../../x11/libX11/buildlink3.mk"
 .include "../../mk/bsd.pkg.mk"
 
-CLASSPATH:=${PKG_JAVA_HOME}/lib/classes.zip:${PREFIX}/lib/java/ant.jar:${PKG_JAVA_HOME}/lib/jsse.jar:${PREFIX}/lib/java/xerces.jar:${PKG_JAVA_HOME}/lib/tools.jar:${PREFIX}/lib/java/jalview.jar:${PREFIX}/lib/java/servlet.jar:${PREFIX}/java/iasp21/lib/activation.jar:${PREFIX}/java/iasp21/lib/mail.jar:${CLASSPATH}
+CLASSPATH:=	${PKG_JAVA_HOME}/lib/classes.zip:${PREFIX}/lib/java/ant.jar:${PKG_JAVA_HOME}/lib/jsse.jar:${PREFIX}/lib/java/xerces.jar:${PKG_JAVA_HOME}/lib/tools.jar:${PREFIX}/lib/java/jalview.jar:${PREFIX}/lib/java/servlet.jar:${PREFIX}/java/iasp21/lib/activation.jar:${PREFIX}/java/iasp21/lib/mail.jar:${CLASSPATH}

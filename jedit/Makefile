@@ -13,9 +13,9 @@ HOMEPAGE=	http://jedit.org/
 COMMENT=	Text editor written in Java
 LICENSE=	gnu-gpl-v2
 
-NO_BUILD=	yes
-USE_JAVA=	run
-PKG_JVMS_ACCEPTED=  sun-jdk7 openjdk7 oracle-jdk8 openjdk8
+NO_BUILD=		yes
+USE_JAVA=		run
+PKG_JVMS_ACCEPTED=	sun-jdk7 openjdk7 oracle-jdk8 openjdk8
 
 USE_TOOLS+=	unzip tar pax cp
 
@@ -23,7 +23,7 @@ WRKSRC=		${WRKDIR}/${PKGBASE}_staging
 
 SHAREDIR=	${PREFIX}/share/${PKGBASE}
 
-AUTO_MKDIRS=	yes
+AUTO_MKDIRS=		yes
 INSTALLATION_DIRS+=	${PKGMANDIR}/man1
 
 CHECK_SHLIBS_SUPPORTED=	no
@@ -31,7 +31,7 @@ CHECK_SHLIBS_SUPPORTED=	no
 SUBST_CLASSES+=		launcher
 SUBST_STAGE.launcher=	pre-configure
 SUBST_FILES.launcher=	jedit
-SUBST_SED.launcher+=	-e 's,@PKG_JAVA_HOME@,'${PKG_JAVA_HOME:Q}',g'
+SUBST_SED.launcher+=	-e 's,@PKG_JAVA_HOME@,'${PKG_JAVA_HOME}',g'
 SUBST_SED.launcher+=	-e 's,@JEDIT_HOME@,'${SHAREDIR:Q}',g'
 
 post-extract:

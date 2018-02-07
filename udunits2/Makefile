@@ -11,13 +11,13 @@
 ## $FreeBSD: head/science/udunits/Makefile 383158 2015-04-03 17:28:32Z sunpoet $
 #		LOCAL/sunpoet
 #OPTIONS_DEFINE=	DOCS
-#CPPFLAGS+=	-I${LOCALBASE}/include
+#CPPFLAGS+=		-I${LOCALBASE}/include
 #INSTALL_TARGET=	install-strip
-#LDFLAGS+=	-L${LOCALBASE}/lib
-#USE_LDCONFIG=	yes
-#INFO=		udunits2 udunits2lib udunits2prog
-#PORTDATA=	*
-#PORTDOCS=	*
+#LDFLAGS+=		-L${LOCALBASE}/lib
+#USE_LDCONFIG=		yes
+#INFO=			udunits2 udunits2lib udunits2prog
+#PORTDATA=		*
+#PORTDOCS=		*
 #post-patch:
 #	@${REINPLACE_CMD} -e '/install-data-hook$$/d' ${WRKSRC}/lib/Makefile.in
 #regression-test test: build
@@ -38,10 +38,10 @@ COMMENT=	Library for manipulating units of physical quantities
 MAKE_JOBS_SAFE=	no
 
 # Just assuming C and C++: Adjust this!
-USE_LANGUAGES=	fortran c c++
-USE_LIBTOOL=	yes
-GNU_CONFIGURE=	yes
-USE_TOOLS+=	gmake
+USE_LANGUAGES=		fortran c c++
+USE_LIBTOOL=		yes
+GNU_CONFIGURE=		yes
+USE_TOOLS+=		gmake
 CONFIGURE_ARGS+=	--disable-shared
 
 CONFIGURE_ENV+=	ac_cv_header_CUnit_CUnit_h=no

@@ -4,10 +4,10 @@ DISTNAME=	texlive-20130530-source
 #PKGNAME=	${DISTNAME:S/-source//}
 PKGNAME=	texlive2013-0.2
 #LICENSE=	texlive-license
-#BROKEN=		Still getting ERROR: [check-interpreter.mk], and NOT fixed yet.
+#BROKEN=	Still getting ERROR: [check-interpreter.mk], and NOT fixed yet.
 
 CATEGORIES=	print
-MASTER_SITES=   ${MASTER_SITE_TEX_CTAN:=systems/texlive/Source/}
+MASTER_SITES=	${MASTER_SITE_TEX_CTAN:=systems/texlive/Source/}
 MASTER_SITES+=	ftp://tug.org/texlive/historic/2013/
 EXTRACT_SUFX=	.tar.xz
 

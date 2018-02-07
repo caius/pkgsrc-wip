@@ -1,3 +1,4 @@
+@comment $NetBSD$
 @comment $Id: PLIST,v 1.1 2014/10/26 14:52:38 noud4 Exp $
 bin/multiminer
 multiminer/Miners/BFGMiner/Extract BFGMiner here.txt
@@ -45,4 +46,3 @@ multiminer/MultiMiner.Xgminer.Discovery.dll.mdb
 multiminer/MultiMiner.Xgminer.dll
 multiminer/MultiMiner.Xgminer.dll.mdb
 multiminer/Newtonsoft.Json.dll
-

@@ -1,8 +1,8 @@
 $NetBSD$
 
---- lib/sanitizer_common/sanitizer_platform_limits_netbsd.h.orig	2017-12-21 18:53:10.000000000 +0000
+--- lib/sanitizer_common/sanitizer_platform_limits_netbsd.h.orig	2018-02-01 23:46:05.000000000 +0000
 +++ lib/sanitizer_common/sanitizer_platform_limits_netbsd.h
-@@ -57,33 +57,36 @@ extern unsigned ucontext_t_sz;
+@@ -57,33 +57,45 @@ extern unsigned ucontext_t_sz;
  extern unsigned struct_rlimit_sz;
  extern unsigned struct_utimbuf_sz;
  extern unsigned struct_timespec_sz;
@@ -10,6 +10,15 @@ $NetBSD$
  
 -struct __sanitizer_iocb {
 +extern unsigned struct_kevent_sz;
++extern unsigned struct_FTS_sz;
++extern unsigned struct_FTSENT_sz;
++extern unsigned struct_regex_sz;
++extern unsigned struct_regmatch_sz;
++
++struct __sanitizer_regmatch {
++  OFF_T rm_so;
++  OFF_T rm_eo;
++};
 +
 +union __sanitizer_sigval {
 +  int sival_int;
@@ -60,7 +69,27 @@ $NetBSD$
  struct __sanitizer_sem_t {
    uptr data[5];
  };
-@@ -131,10 +134,29 @@ struct __sanitizer_ifaddrs {
+@@ -110,6 +122,19 @@ struct __sanitizer_shmid_ds {
+   void *_shm_internal;
+ };
+ 
++struct __sanitizer_protoent {
++  char *p_name;
++  char **p_aliases;
++  int p_proto;
++};
++
++struct __sanitizer_netent {
++  char *n_name;
++  char **n_aliases;
++  int n_addrtype;
++  u32 n_net;
++};
++
+ extern unsigned struct_msqid_ds_sz;
+ extern unsigned struct_mq_attr_sz;
+ extern unsigned struct_timex_sz;
+@@ -131,6 +156,8 @@ struct __sanitizer_ifaddrs {
    unsigned int ifa_addrflags;
  };
  
@@ -69,28 +98,7 @@ $NetBSD$
  typedef unsigned __sanitizer_pthread_key_t;
  
  typedef long long __sanitizer_time_t;
- 
-+typedef int __sanitizer_suseconds_t;
-+
-+struct __sanitizer_timeval {
-+  __sanitizer_time_t tv_sec;
-+  __sanitizer_suseconds_t tv_usec;
-+};
-+
-+struct __sanitizer_itimerval {
-+  struct __sanitizer_timeval it_interval;
-+  struct __sanitizer_timeval it_value;
-+};
-+
-+struct __sanitizer_timespec {
-+  __sanitizer_time_t tv_sec;
-+  long tv_nsec;
-+};
-+
- struct __sanitizer_passwd {
-   char *pw_name;
-   char *pw_passwd;
-@@ -189,6 +211,12 @@ struct __sanitizer_msghdr {
+@@ -200,6 +227,12 @@ struct __sanitizer_msghdr {
    unsigned msg_controllen;
    int msg_flags;
  };
@@ -103,7 +111,7 @@ $NetBSD$
  struct __sanitizer_cmsghdr {
    unsigned cmsg_len;
    int cmsg_level;
-@@ -241,6 +269,22 @@ struct __sanitizer_sigaction {
+@@ -252,6 +285,22 @@ struct __sanitizer_sigaction {
    int sa_flags;
  };
  
@@ -126,7 +134,7 @@ $NetBSD$
  typedef __sanitizer_sigset_t __sanitizer_kernel_sigset_t;
  
  struct __sanitizer_kernel_sigaction_t {
-@@ -298,6 +342,8 @@ struct __sanitizer_pollfd {
+@@ -309,6 +358,8 @@ struct __sanitizer_pollfd {
  
  typedef unsigned __sanitizer_nfds_t;
  
@@ -135,12 +143,14 @@ $NetBSD$
  struct __sanitizer_glob_t {
    uptr gl_pathc;
    uptr gl_matchc;
-@@ -317,6 +363,52 @@ extern int glob_altdirfunc;
+@@ -328,6 +379,54 @@ extern int glob_altdirfunc;
  
  extern unsigned path_max;
  
 +extern int struct_kinfo_proc_sz;
 +extern int struct_kinfo_proc2_sz;
++
++extern int struct_ttyent_sz;
 +
 +extern int ptrace_pt_io;
 +extern int ptrace_pt_lwpinfo;
@@ -188,7 +198,7 @@ $NetBSD$
  struct __sanitizer_wordexp_t {
    uptr we_wordc;
    char **we_wordv;
-@@ -350,6 +442,43 @@ struct __sanitizer_ifconf {
+@@ -361,6 +460,53 @@ struct __sanitizer_ifconf {
    } ifc_ifcu;
  };
  
@@ -229,10 +239,20 @@ $NetBSD$
 +  char kernelname[1024];
 +};
 +
++struct __sanitizer_ttyent {
++  char *ty_name;
++  char *ty_getty;
++  char *ty_type;
++  int ty_status;
++  char *ty_window;
++  char *ty_comment;
++  char *ty_class;
++};
++
  #define IOC_NRBITS 8
  #define IOC_TYPEBITS 8
  #define IOC_SIZEBITS 14
-@@ -374,185 +503,1712 @@ struct __sanitizer_ifconf {
+@@ -385,185 +531,1712 @@ struct __sanitizer_ifconf {
  #define IOC_NR(nr) (((nr) >> IOC_NRSHIFT) & IOC_NRMASK)
  #define IOC_SIZE(nr) (((nr) >> IOC_SIZESHIFT) & IOC_SIZEMASK)
  

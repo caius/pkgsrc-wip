@@ -1,22 +1,20 @@
-# $NetBSD: Makefile,v 1.6 2012/11/23 22:33:58 othyro Exp $
-#
+# $NetBSD$
 
-DISTNAME=		pysnmp-3.4.2
-PKGNAME=		${PYPKGPREFIX}-${DISTNAME:S/py//}
-CATEGORIES=		net
-MASTER_SITES=	${MASTER_SITE_SOURCEFORGE:=pysnmp/}
+DISTNAME=	pysnmp-4.4.4
+PKGNAME=	${PYPKGPREFIX}-${DISTNAME:S/py//}
+CATEGORIES=	net python
+MASTER_SITES=	${MASTER_SITE_PYPI:=p/pysnmp/}
 
-MAINTAINER=		goteki@users.sourceforge.net
-HOMEPAGE=		http://pysnmp.sourceforge.net/
-COMMENT=		Python SNMP framework
+MAINTAINER=	pkgsrc-users@NetBSD.org
+HOMEPAGE=	https://github.com/etingof/pysnmp
+COMMENT=	SNMP library for Python
+LICENSE=	2-clause-bsd
 
-PY_PATCHPLIST=	yes
+DEPENDS+=	${PYPKGPREFIX}-asn1>=0.2.3:../../security/py-asn1
+DEPENDS+=	${PYPKGPREFIX}-cryptodomex-[0-9]*:../../wip/py-pycryptodomex
+DEPENDS+=	${PYPKGPREFIX}-smi-[0-9]*:../../wip/py-smi
 
-do-build:
-	(cd ${WRKSRC} && ${PYTHONBIN} setup.py build)
+USE_LANGUAGES=	# none
 
-do-install:
-	(cd ${WRKSRC} && ${PYTHONBIN} setup.py install)
-
-.include "../../lang/python/extension.mk"
+.include "../../lang/python/egg.mk"
 .include "../../mk/bsd.pkg.mk"

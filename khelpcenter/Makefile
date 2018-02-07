@@ -14,7 +14,15 @@ DEPENDS+=	kinit>=5.21.0:../../x11/kinit
 
 USE_TOOLS+=	msgmerge pkg-config perl:run
 
+BUILDLINK_TRANSFORM+=	rm:-fvisibility=hidden
+
 REPLACE_PERL+=	searchhandlers/khc_mansearch.pl
+
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	post-patch
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{KDE_INSTALL_CONFDIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
 CONF_FILES+=	${PREFIX}/share/examples/kde-xdg/khelpcenter.categories \

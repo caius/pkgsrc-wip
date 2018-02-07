@@ -12,16 +12,16 @@ COMMENT=	Reinteract is a system for interactive experimentation with Python
 LICENSE=	2-clause-bsd
 
 DEPENDS+=	${PYPKGPREFIX}-cairo-[0-9]*:../../graphics/py-cairo
+DEPENDS+=	${PYPKGPREFIX}-matplotlib-[0-9]*:../../graphics/py-matplotlib
 
 GNU_CONFIGURE=	yes
 
-REPLACE_PYTHON+=	bin/reinteract.in
-PY_PATCHPLIST=	yes
+REPLACE_PYTHON+=		bin/reinteract.in
+PY_PATCHPLIST=			yes
 PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-gobject
 
 .include "../../devel/py-gobject/buildlink3.mk"
 .include "../../devel/pango/buildlink3.mk"
-.include "../../graphics/py-matplotlib/buildlink3.mk"
 .include "../../math/py-numpy/buildlink3.mk"
 .include "../../lang/python/application.mk"
 .include "../../lang/python/extension.mk"

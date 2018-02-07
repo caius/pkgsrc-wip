@@ -15,7 +15,7 @@ DEPENDS+=	p5-BSD-Resource>=1.24:../../devel/p5-BSD-Resource
 DEPENDS+=	p5-Term-ReadLine>=1.16:../../devel/p5-Term-ReadLine
 
 PERL5_MODULE_TYPE=	MakeMaker
-PERL5_PACKLIST=	auto/psh/.packlist
+PERL5_PACKLIST=		auto/psh/.packlist
 
 USE_LANGUAGES=	# none
 
@@ -33,7 +33,7 @@ SUBST_MESSAGE.postinst=	Substituting in post-install script
 SUBST_SED.postinst=	-e 's,~/[.]psh,${DESTDIR}${PREFIX},'
 SUBST_STAGE.postinst=	pre-install
 
-INSTALL_MAKE_FLAGS+=	PREFIX=${DESTDIR:Q}${PREFIX:Q}
+INSTALL_MAKE_FLAGS+=	PREFIX=${DESTDIR}${PREFIX}
 
 post-install:
 	cd ${WRKSRC} && \

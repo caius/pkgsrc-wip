@@ -11,7 +11,7 @@ HOMEPAGE=		http://www.aolserver.com/
 COMMENT=		America Online's open source web server
 
 
-MAKE_FLAGS+=		NSHOME=${WRKSRC:Q}
+MAKE_FLAGS+=		NSHOME=${WRKSRC}
 CONFIGURE_ARGS+=	--with-tcl=${BUILDLINK_PREFIX.tcl}/lib
 
 WRKSRC=			${WRKDIR}/${PKGNAME_NOREV}
@@ -19,7 +19,7 @@ USE_PKGLOCALEDIR=	yes
 USE_LIBTOOL=		yes
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		gmake
-PTHREAD_OPTS+=	require
+PTHREAD_OPTS+=		require
 
 NSD_LOGDIR=		${VARBASE}/log/nsd
 NSD_PIDDIR=		${VARBASE}/run/nsd

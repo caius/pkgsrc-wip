@@ -37,11 +37,11 @@ UNLIMIT_RESOURCES+=	stacksize
 .if ${OPSYS} == "SunOS"
 CONFIGURE_ENV+=		OBJDUMP=/usr/sfw/bin/gobjdump
 CONFIGURE_ARGS+=	--without-gnu-ld --with-ld=/usr/ccs/bin/ld
-. if !exists(/usr/sfw/bin/gas)
+.  if !exists(/usr/sfw/bin/gas)
 CONFIGURE_ARGS+=	--without-gnu-as --with-as=/usr/ccs/bin/as
-. else
+.  else
 CONFIGURE_ARGS+=	--with-gnu-as --with-as=/usr/sfw/bin/gas
-. endif
+.  endif
 .endif
 
 # REPLACE_AWK+=	gcc/testsuite/gcc.test-framework/test-framework.awk	\
@@ -52,17 +52,17 @@ CONFIGURE_ARGS+=	--with-gnu-as --with-as=/usr/sfw/bin/gas
 # 		gcc/opth-gen.awk					\
 # 		gcc/opt-functions.awk
 
-REPLACE_BASH+= contrib/dg-cmp-results.sh
-REPLACE_BASH+= contrib/reghunt/bin/gcc-svn-patchlist
-REPLACE_BASH+= contrib/reghunt/bin/gcc-svn-update
-REPLACE_BASH+= contrib/reghunt/bin/gcc-svn-update-fix
-REPLACE_BASH+= contrib/reghunt/bin/reg-hunt
-REPLACE_BASH+= contrib/reghunt/bin/reg-test
-REPLACE_BASH+= contrib/reghunt/date_based/reg_periodic
-REPLACE_BASH+= contrib/reghunt/date_based/reg_search
-REPLACE_BASH+= gcc/dbgcnt.def
-REPLACE_BASH+= gcc/testsuite/gcc.test-framework/gen_directive_tests
-REPLACE_BASH+= libstdc++-v3/scripts/run_doxygen
+REPLACE_BASH+=	contrib/dg-cmp-results.sh
+REPLACE_BASH+=	contrib/reghunt/bin/gcc-svn-patchlist
+REPLACE_BASH+=	contrib/reghunt/bin/gcc-svn-update
+REPLACE_BASH+=	contrib/reghunt/bin/gcc-svn-update-fix
+REPLACE_BASH+=	contrib/reghunt/bin/reg-hunt
+REPLACE_BASH+=	contrib/reghunt/bin/reg-test
+REPLACE_BASH+=	contrib/reghunt/date_based/reg_periodic
+REPLACE_BASH+=	contrib/reghunt/date_based/reg_search
+REPLACE_BASH+=	gcc/dbgcnt.def
+REPLACE_BASH+=	gcc/testsuite/gcc.test-framework/gen_directive_tests
+REPLACE_BASH+=	libstdc++-v3/scripts/run_doxygen
 
 
 CONFIGURE_ARGS+=	--prefix=${GCC_PREFIX:Q}
@@ -116,7 +116,7 @@ CFLAGS+=		-I${BUILDLINK_DIR}/include
 
 # Somone should fix this so it will match the NetBSD system compiler
 #.if ${OPSYS} == "NetBSD"
-#GCC_PLATFORM=	${MACHINE_ARCH}--${LOWER_OPSYS}${APPEND_ELF}
+#GCC_PLATFORM=		${MACHINE_ARCH}--${LOWER_OPSYS}${APPEND_ELF}
 #CONFIGURE_ARGS+=	--host=${GCC_PLATFORM:Q}
 #MAKE_ENV+=		AR=/usr/bin/ar
 #.endif # NetBSD
@@ -138,7 +138,7 @@ do-configure:
 	cd ${WRKDIR}/obj; ${SETENV} ${CONFIGURE_ENV} ${CONFIG_SHELL} ${WRKSRC}/configure ${CONFIGURE_ARGS}
 
 do-build:
-	(${_ULIMIT_CMD} cd ${WRKDIR}/obj && ${SETENV} ${MAKE_ENV} ${GMAKE} -j${MAKE_JOBS:U1:Q} )
+	(${_ULIMIT_CMD} cd ${WRKDIR}/obj && ${SETENV} ${MAKE_ENV} ${GMAKE} -j${MAKE_JOBS:U1} )
 
 do-test:
 #.if (${MACHINE_GNU_ARCH} == "x86_64")

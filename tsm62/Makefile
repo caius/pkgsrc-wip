@@ -43,8 +43,8 @@ RPM2PKG_STRIP=		0
 RPM2PKG_PLIST=		# none generated
 RPM2PKG_STAGE=		do-install
 
-PLIST_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR:Q}
-PLIST_SUBST+=		EMULDIR=${EMULDIR:Q}
+PLIST_SUBST+=		PKG_SYSCONFDIR=${PKG_SYSCONFDIR}
+PLIST_SUBST+=		EMULDIR=${EMULDIR}
 PLIST_SUBST+=		TSMCLIENTSUBDIR=${TSMCLIENTSUBDIR:Q}
 
 TSM_LOCALE=		${PKG_SYSCONFDIR}/en_US
@@ -52,7 +52,7 @@ CHECK_FILES_SKIP+=	${TSM_LOCALE}
 
 TSMCLIENTSUBDIR=	opt/tivoli/tsm/client
 
-MESSAGE_SUBST+=		EMULDIR=${EMULDIR:Q}
+MESSAGE_SUBST+=		EMULDIR=${EMULDIR}
 
 .if ${EMUL_PLATFORM} == "linux-x86_64"
 RPMFILES+=		${WRKDIR}/TIVsm-API64.i386.rpm \
@@ -60,7 +60,7 @@ RPMFILES+=		${WRKDIR}/TIVsm-API64.i386.rpm \
 			${WRKDIR}/gskssl64-8.0.14.6.linux.x86_64.rpm
 
 # Make sure suse pkg version equals the above
-DEPENDS+=               suse32_base-[0-9]*:../../emulators/suse121_32_base
+DEPENDS+=		suse32_base-[0-9]*:../../emulators/suse121_32_base
 
 EMUL32DIR=		${PREFIX}${_OPSYS_EMULDIR.linux32}
 PLIST_SUBST+=		EMUL32DIR=${EMUL32DIR:Q}

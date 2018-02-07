@@ -12,13 +12,13 @@ COMMENT=		Audio editor with graphical interface
 LICENSE=		gnu-gpl-v2
 
 # needs real bison and not yacc
-#BUILD_DEPENDS+= 	bison-[0-9]*:../../devel/bison
+#BUILD_DEPENDS+=	bison-[0-9]*:../../devel/bison
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--disable-jack
 CONFIGURE_ARGS+=	--enable-oss
 CONFIGURE_ARGS+=	--enable-portaudio
-CPPFLAGS+=		-DDEVOSSSOUND=\"${DEVOSSSOUND:Q}\"
+CPPFLAGS+=		-DDEVOSSSOUND=\"${DEVOSSSOUND}\"
 #LDFLAGS+=		-lcompat
 USE_TOOLS+=		flex gmake bison pkg-config
 USE_LANGUAGES=		c c++

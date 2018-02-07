@@ -19,9 +19,9 @@ MULTILIB_SUPPORTED?=	unknown
 .if !empty(MACHINE_PLATFORM:MLinux-*-x86_64)
 .  if exists(/usr/include/gnu/stubs-64.h) && \
      !exists(/usr/include/gnu/stubs-32.h)
-MULTILIB_SUPPORTED=No
+MULTILIB_SUPPORTED=	No
 .  else
-MULTILIB_SUPPORTED=Yes
+MULTILIB_SUPPORTED=	Yes
 .  endif
 .endif
 .if !empty(MULTILIB_SUPPORTED:M[Yy][Ee][Ss])
@@ -102,7 +102,7 @@ LANGS+=			java
 ECJ_JAR=		ecj-4.5.jar
 SITES.${ECJ_JAR}=	ftp://sourceware.org/pub/java/
 DISTFILES+=		${ECJ_JAR}
-CONFIGURE_ARGS+=	--with-ecj-jar=${DISTDIR:Q}/${ECJ_JAR:Q}
+CONFIGURE_ARGS+=	--with-ecj-jar=${DISTDIR}/${ECJ_JAR:Q}
 
 JAVA_NAME=		${GCC_PKGNAME}
 JAVA_HOME=		${PREFIX}/java/${JAVA_NAME}
@@ -113,15 +113,15 @@ JAVA_WRAPPERS=		appletviewer jar jarsigner java javah keytool \
 JAVA_ARCH=		${MACHINE_ARCH:S/x86_64/amd64/}
 
 PLIST_SRC+=		PLIST.java
-PLIST_SUBST+=		JAVA_NAME=${JAVA_NAME:Q}
+PLIST_SUBST+=		JAVA_NAME=${JAVA_NAME}
 PLIST_SUBST+=		JAVA_ARCH=${JAVA_ARCH:Q}
 
 # Create a JPackage compatible SDK environment.
 CONFIGURE_ARGS+=	--enable-java-home
-CONFIGURE_ARGS+=	--with-os-directory=${LOWER_OPSYS:Q}
+CONFIGURE_ARGS+=	--with-os-directory=${LOWER_OPSYS}
 CONFIGURE_ARGS+=	--with-arch-directory=${JAVA_ARCH:Q}
-CONFIGURE_ARGS+=	--with-jvm-root-dir=${JAVA_HOME:Q}
-CONFIGURE_ARGS+=	--with-java-home=${JAVA_HOME:Q}
+CONFIGURE_ARGS+=	--with-jvm-root-dir=${JAVA_HOME}
+CONFIGURE_ARGS+=	--with-java-home=${JAVA_HOME}
 
 REPLACE_PYTHON=		libjava/contrib/aot-compile.in
 
@@ -158,9 +158,9 @@ LANGS+=			fortran
 .if !empty(PKG_OPTIONS:Mgcc-c++)
 LANGS+=			c++
 USE_TOOLS+=		perl
-.if ${OPSYS} != "SunOS"
+.  if ${OPSYS} != "SunOS"
 CONFIGURE_ARGS+=	--enable-__cxa_atexit
-.endif
+.  endif
 CONFIGURE_ARGS+=	--with-gxx-include-dir=${GCC_PREFIX}/include/c++/
 .else
 CONFIGURE_ARGS+=	--disable-build-with-cxx

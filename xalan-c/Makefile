@@ -5,9 +5,9 @@ DISTNAME=	xalan_c-1.11-src
 PKGNAME=	${DISTNAME:S|_c|-c|:S|-src||}
 CATEGORIES=	textproc
 MASTER_SITES=	${MASTER_SITE_APACHE:=xalan/xalan-c/sources/}
-DISTFILES=      ${DISTNAME}${EXTRACT_SUFX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-DISTFILES+=     xerces-c-3.1.1.tar.gz
+DISTFILES+=	xerces-c-3.1.1.tar.gz
 SITES.xerces-c-3.1.1.tar.gz=	${MASTER_SITE_APACHE:=xerces/c/3/sources/}
 MAINTAINER=	pkgsrc-users@NetBSD.org
 HOMEPAGE=	http://xml.apache.org/xalan-c/
@@ -31,7 +31,7 @@ XALAN_ENV=	XERCESCROOT="${WRKDIR}/xerces-c-3.1.1" XALANCROOT="${WRKDIR}/xalan-c-
 
 HAS_CONFIGURE=		YES
 CONFIGURE_SCRIPT=	./runConfigure
-CONFIGURE_ARGS+=	-C --prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	-C --prefix=${PREFIX}
 CONFIGURE_ARGS+=	-p ${XALAN_PLATFORM}
 CONFIGURE_ARGS+=	-r pthread
 # 1.7.0 needs the following argument.

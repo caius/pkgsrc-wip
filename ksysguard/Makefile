@@ -21,6 +21,15 @@ SUBST_STAGE.eat-std=	post-configure
 SUBST_FILES.eat-std=	_KDE_build/ksysguardd/NetBSD/CMakeFiles/libksysguardd.dir/flags.make
 SUBST_SED.eat-std=	-e 's, -std=iso9899:1990 , ,g'
 
+CFLAGS.NetBSD+=	-D_NETBSD_SOURCE
+
+SUBST_CLASSES+=		xdg
+SUBST_STAGE.xdg=	post-patch
+SUBST_MESSAGE.xdg=	Install via examples dir.
+SUBST_FILES.xdg=	example/CMakeLists.txt
+SUBST_FILES.xdg+=	gui/CMakeLists.txt
+SUBST_SED.xdg=		-e 's:{KDE_INSTALL_FULL_SYSCONFDIR}:{KDE_INSTALL_DATAROOTDIR}/examples/ksysguard:'
+SUBST_SED.xdg+=		-e 's:{CONFIG_INSTALL_DIR}:{KDE_INSTALL_XDG_EX_DIR}:'
 
 MAKE_DIRS+=	${PKG_SYSCONFDIR}/xdg
 CONF_FILES+=	${PREFIX}/share/examples/ksysguard/ksysguarddrc \

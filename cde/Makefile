@@ -11,12 +11,12 @@ COMMENT=	Common Desktop Environment
 LICENSE=	gnu-lgpl-v2
 
 USE_LANGUAGES=	c c++
-USE_TOOLS+=     bison bdftopcf mkfontdir ksh awk:run
+USE_TOOLS+=	bison bdftopcf mkfontdir ksh awk:run
 BUILD_TARGET=	World
 
 MAKE_JOBS_SAFE=	no
 
-DEPENDS+= ast-ksh-[0-9]*:../../shells/ast-ksh
+DEPENDS+=	ast-ksh-[0-9]*:../../shells/ast-ksh
 
 WRKSRC=	${WRKDIR}/${PKGNAME_NOREV}
 
@@ -33,7 +33,7 @@ IMAKE_DEFINES+=		-DCDEProjectRoot=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeInstallationTop=${PREFIX}/dt
 IMAKE_DEFINES+=		-DCdeConfigurationTop=${PKG_SYSCONFDIR}
 IMAKE_DEFINES+=		-DCdeLogfileTop=${VARBASE}/dt
-#IMAKE_DEFINES+=		-DTclLibrary=${BUILDLINK_PREFIX.tcl}/lib
+#IMAKE_DEFINES+=	-DTclLibrary=${BUILDLINK_PREFIX.tcl}/lib
 IMAKE_DEFINES+=		-DUseInstalledX11=YES
 #IMAKE_DEFINES+=	-DKornShell=${TOOLS_PATH.ksh}
 IMAKE_DEFINES+=		-DDtKornShell=${PREFIX}/dt/bin/dtksh
@@ -52,7 +52,7 @@ OWN_DIRS+=		${PKG_SYSCONFDIR}/appconfig/${i}/${j}
 .endfor
 OWN_DIRS+=		${PKG_SYSCONFDIR}/config
 OWN_DIRS+=		${PKG_SYSCONFDIR}/config/Xsession.d
-BUILDLINK_PASSTHRU_DIRS+=${PREFIX}/dt/lib
+BUILDLINK_PASSTHRU_DIRS+= ${PREFIX}/dt/lib
 
 SUBST_CLASSES+=		destdir
 SUBST_STAGE.destdir=	pre-configure

@@ -19,7 +19,7 @@ HAS_CONFIGURE=		YES
 USE_TOOLS+=		gmake msgfmt # and xgettext
 USE_PKGLOCALEDIR=	YES
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--mandir=/man
 
 .if !exists(/usr/bin/lex)
@@ -30,8 +30,8 @@ MAKE_ENV+=		LEX=${LEX:Q}
 
 .if !exists(/usr/bin/yacc)
 BUILD_DEPENDS+=	bison-[0-9]*:../../devel/bison
-YACC=			${LOCALBASE}/bin/bison -y
-MAKE_ENV+=		YACC=${YACC:Q}
+YACC=		${LOCALBASE}/bin/bison -y
+MAKE_ENV+=	YACC=${YACC:Q}
 .endif
 
 .include "../../mk/bsd.pkg.mk"

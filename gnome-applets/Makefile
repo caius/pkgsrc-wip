@@ -18,7 +18,7 @@ PYTHON_VERSIONS_INCOMPATIBLE=	34 35 36 # py-ORBit via py-gnome2
 
 .include "options.mk"
 
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 # obsolete; replaced by PA mixer in gnome-media>=2.26
 CONFIGURE_ARGS+=	--enable-mixer-applet
 # obsolete; replaced by gnome-power-manager>=2.24
@@ -27,19 +27,19 @@ CONFIGURE_ARGS+=	--disable-cpufreq
 EGDIR=			${PREFIX}/share/examples/gnome-applets
 
 GCONF_SCHEMAS=		charpick.schemas
-GCONF_SCHEMAS+=	drivemount.schemas
-GCONF_SCHEMAS+=	geyes.schemas
+GCONF_SCHEMAS+=		drivemount.schemas
+GCONF_SCHEMAS+=		geyes.schemas
 #GCONF_SCHEMAS+=	gswitchit.schemas
-GCONF_SCHEMAS+=	mixer.schemas
-GCONF_SCHEMAS+=	multiload.schemas
-GCONF_SCHEMAS+=	stickynotes.schemas
+GCONF_SCHEMAS+=		mixer.schemas
+GCONF_SCHEMAS+=		multiload.schemas
+GCONF_SCHEMAS+=		stickynotes.schemas
 
 .include "../../mk/bsd.prefs.mk"
 
 PLIST_VARS+=		battstat
 .if ${OPSYS} == "Linux" || ${OPSYS} == "FreeBSD" || ${OPSYS} == "OpenBSD" || \
     (${OPSYS} == "NetBSD" && exists(/usr/include/machine/apmvar.h))
-GCONF_SCHEMAS+=	battstat.schemas
+GCONF_SCHEMAS+=		battstat.schemas
 PLIST.battstat=		yes
 CONF_FILES+=		${EGDIR}/sound/events/battstat_applet.soundlist \
 			${PKG_SYSCONFDIR}/sound/events/battstat_applet.soundlist
@@ -52,7 +52,7 @@ PRINT_PLIST_AWK+=	/examples/ { print "$${PLIST.battstat}"$$0; next; }
 
 .include "../../devel/GConf/schemas.mk"
 
-PY_PATCHPLIST=	yes
+PY_PATCHPLIST=		yes
 REPLACE_PYTHON+=	invest-applet/invest/invest-applet.py
 REPLACE_PYTHON+=	invest-applet/invest/invest-chart
 

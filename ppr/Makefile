@@ -23,11 +23,11 @@ EGDIR=			${PREFIX}/share/examples
 PKG_SYSCONFSUBDIR=	ppr
 PPR_CONFDIR=		${PKG_SYSCONFDIR}
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 
 # Use the EGDIR here?
 #CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFBASE}
-CONFIGURE_ARGS+=	--sysconfdir=${EGDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${EGDIR}
 
 CONFIGURE_ARGS+=	--bindir=${PREFIX}/bin
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/libexec
@@ -69,7 +69,7 @@ CONF_FILES+=		${EGDIR}/acl/pprprox.allow ${PKG_SYSCONFDIR}/acl/pprprox.allow
 CONF_FILES+=		${EGDIR}/acl/ppuser.allow ${PKG_SYSCONFDIR}/acl/ppuser.allow
 SUPPORT_FILES=		${EGDIR}/media.db ${PKG_SYSCONFDIR}/media.db
 
-RCD_SCRIPTS=		pprd ppr-papd papsrv lprsrv
+RCD_SCRIPTS=			pprd ppr-papd papsrv lprsrv
 RCD_SCRIPT_SRC.pprd=		# empty
 RCD_SCRIPT_SRC.ppr-papd=	# empty
 RCD_SCRIPT_SRC.papsrv=		# empty

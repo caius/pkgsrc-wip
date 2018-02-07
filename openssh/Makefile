@@ -36,20 +36,20 @@ CONFIGURE_ARGS.Darwin+=	--disable-strip
 
 # OpenSSH on Interix has some important caveats
 .if ${OPSYS} == "Interix"
-MESSAGE_SRC=		${.CURDIR}/MESSAGE.Interix
-BUILDLINK_PASSTHRU_DIRS+= /usr/local/lib/bind
-CONFIGURE_ENV+=		ac_cv_func_openpty=no
-CONFIGURE_ENV+=		ac_cv_type_struct_timespec=yes
-CPPFLAGS+=		-DIOV_MAX=16 # default is INT_MAX, way too large
-.if exists(/usr/local/include/bind/resolv.h)
-CPPFLAGS+=		-I/usr/local/include/bind
-BUILDLINK_PASSTHRU_DIRS+= /usr/local/include/bind
-.elif exists(/usr/local/bind/include/resolv.h)
-CPPFLAGS+=		-I/usr/local/bind/include
-BUILDLINK_PASSTHRU_DIRS+= /usr/local/bind/include
-.endif
-LDFLAGS+=		-L/usr/local/lib/bind
-LIBS+=			-lbind -ldb -lcrypt
+MESSAGE_SRC=			${.CURDIR}/MESSAGE.Interix
+BUILDLINK_PASSTHRU_DIRS+=	/usr/local/lib/bind
+CONFIGURE_ENV+=			ac_cv_func_openpty=no
+CONFIGURE_ENV+=			ac_cv_type_struct_timespec=yes
+CPPFLAGS+=			-DIOV_MAX=16 # default is INT_MAX, way too large
+.  if exists(/usr/local/include/bind/resolv.h)
+CPPFLAGS+=			-I/usr/local/include/bind
+BUILDLINK_PASSTHRU_DIRS+=	/usr/local/include/bind
+.  elif exists(/usr/local/bind/include/resolv.h)
+CPPFLAGS+=			-I/usr/local/bind/include
+BUILDLINK_PASSTHRU_DIRS+=	/usr/local/bind/include
+.  endif
+LDFLAGS+=			-L/usr/local/lib/bind
+LIBS+=				-lbind -ldb -lcrypt
 
 .else # not Interix
 
@@ -67,7 +67,7 @@ PKG_SYSCONFSUBDIR=	ssh
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-mantype=man
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--with-pid-dir=${SSH_PID_DIR:Q}
 CONFIGURE_ARGS+=	--with-ssl-dir=${SSLBASE:Q}
 CONFIGURE_ARGS+=	--with-tcp-wrappers=${BUILDLINK_PREFIX.tcp_wrappers}
@@ -190,7 +190,7 @@ post-configure:
 		${SED} -e '/HAVE_ECDSA_START/,/HAVE_ECDSA_STOP/d' \
 			${FILESDIR}/sshd.sh > ${WRKDIR}/sshd.sh; \
 	fi
-	${SED} -e 's,@VARBASE@,${VARBASE:Q},g' \
+	${SED} -e 's,@VARBASE@,${VARBASE},g' \
 		< ${FILESDIR}/org.openssh.sshd.sb.in \
 		> ${WRKDIR}/org.openssh.sshd.sb
 

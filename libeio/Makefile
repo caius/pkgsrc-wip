@@ -18,8 +18,8 @@ USE_MULTIARCH=	lib
 
 WRKSRC=	${WRKDIR}/${PKGBASE}-${DISTNAME}
 
-GNU_CONFIGURE_LIBSUBDIR=eio
-CONFIGURE_ARGS+=	--includedir=${PREFIX}/include/eio
+GNU_CONFIGURE_LIBSUBDIR=	eio
+CONFIGURE_ARGS+=		--includedir=${PREFIX}/include/eio
 
 pre-configure:
 	cd ${WRKSRC} && ${SH} ./autogen.sh

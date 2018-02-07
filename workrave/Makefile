@@ -15,7 +15,7 @@ USE_LANGUAGES+=		c c++
 USE_PKGLOCALEDIR=	yes
 HAS_CONFIGURE=		yes
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR:Q}
+CONFIGURE_ARGS+=	--sysconfdir=${PKG_SYSCONFDIR}
 CONFIGURE_ARGS+=	--docdir="${PREFIX}/share/doc/${PKGBASE}"
 
 # Under NetBSD, /usr/include/wchar.h requires either _ISOC99_SOURCE or
@@ -25,9 +25,9 @@ CONFIGURE_ARGS+=	--docdir="${PREFIX}/share/doc/${PKGBASE}"
 CXXFLAGS+=		-D_ISOC99_SOURCE
 
 INSTALL_MAKE_FLAGS+=	utilsdir=${EGDIR}/sound/events
-EGDIR=		${PREFIX}/share/examples/${PKGBASE}
-CONF_FILES+=	${EGDIR}/sound/events/workrave.soundlist \
-    		${PKG_SYSCONFDIR}/sound/events/workrave.soundlist
+EGDIR=			${PREFIX}/share/examples/${PKGBASE}
+CONF_FILES+=		${EGDIR}/sound/events/workrave.soundlist \
+			${PKG_SYSCONFDIR}/sound/events/workrave.soundlist
 
 .include "options.mk"
 

@@ -13,8 +13,8 @@ CONFLICTS+=	gnuclient-[0-9]*
 CONFLICTS+=	xemacs-[0-9]*
 
 
-PLIST_SUBST+=	DISTNAME=${DISTNAME:Q}
-MESSAGE_SUBST+=	DISTNAME=${DISTNAME:Q}
+PLIST_SUBST+=	DISTNAME=${DISTNAME}
+MESSAGE_SUBST+=	DISTNAME=${DISTNAME}
 
 GNU_CONFIGURE=		yes
 USE_TOOLS+=		makeinfo perl
@@ -82,11 +82,11 @@ PLIST_SUBST+=	X11ONLY=""
 INFOPATH=	${PREFIX}/info:${X11BASE}/info:/usr/local/info
 
 CONFIGURE_ARGS+=	${MACHINE_GNU_PLATFORM}
-CONFIGURE_ARGS+=	--prefix=${PREFIX:Q}
+CONFIGURE_ARGS+=	--prefix=${PREFIX}
 CONFIGURE_ARGS+=	--with-clash-detection
 CONFIGURE_ARGS+=	--with-mule=yes
 .if ${OPSYS} == "Darwin"
-CONFIGURE_ARGS+=       --with-ncurses
+CONFIGURE_ARGS+=	--with-ncurses
 .elif ${OPSYS} != "Linux"
 CONFIGURE_ARGS+=	--with-ncurses=no
 .endif

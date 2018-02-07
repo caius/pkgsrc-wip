@@ -1,6 +1,6 @@
 $NetBSD$
 
---- lib/sanitizer_common/sanitizer_platform_limits_netbsd.cc.orig	2017-11-28 08:23:47.000000000 +0000
+--- lib/sanitizer_common/sanitizer_platform_limits_netbsd.cc.orig	2018-02-01 23:46:05.000000000 +0000
 +++ lib/sanitizer_common/sanitizer_platform_limits_netbsd.cc
 @@ -15,7 +15,59 @@
  #include "sanitizer_platform.h"
@@ -172,12 +172,27 @@ $NetBSD$
  #include <sys/shm.h>
  #include <sys/signal.h>
  #include <sys/socket.h>
-@@ -99,18 +240,83 @@ unsigned struct_sockaddr_sz = sizeof(str
+@@ -67,6 +208,10 @@
+ #include <utmpx.h>
+ #include <wchar.h>
+ #include <wordexp.h>
++#include <ttyent.h>
++
++#include <fts.h>
++#include <regex.h>
+ 
+ // Include these after system headers to avoid name clashes and ambiguities.
+ #include "sanitizer_internal_defs.h"
+@@ -99,18 +244,87 @@ unsigned struct_sockaddr_sz = sizeof(str
  unsigned ucontext_t_sz = sizeof(ucontext_t);
  unsigned struct_rlimit_sz = sizeof(struct rlimit);
  unsigned struct_timespec_sz = sizeof(struct timespec);
 +unsigned struct_sembuf_sz = sizeof(struct sembuf);
 +unsigned struct_kevent_sz = sizeof(struct kevent);
++unsigned struct_FTS_sz = sizeof(FTS);
++unsigned struct_FTSENT_sz = sizeof(FTSENT);
++unsigned struct_regex_sz = sizeof(regex_t);
++unsigned struct_regmatch_sz = sizeof(regmatch_t);
  unsigned struct_utimbuf_sz = sizeof(struct utimbuf);
  unsigned struct_itimerspec_sz = sizeof(struct itimerspec);
  unsigned struct_timex_sz = sizeof(struct timex);
@@ -256,12 +271,14 @@ $NetBSD$
  int shmctl_ipc_stat = (int)IPC_STAT;
  
  unsigned struct_utmp_sz = sizeof(struct utmp);
-@@ -137,65 +343,1729 @@ int glob_altdirfunc = GLOB_ALTDIRFUNC;
+@@ -137,65 +351,1731 @@ int glob_altdirfunc = GLOB_ALTDIRFUNC;
  
  unsigned path_max = PATH_MAX;
  
 +int struct_kinfo_proc_sz = sizeof(struct kinfo_proc);
 +int struct_kinfo_proc2_sz = sizeof(struct kinfo_proc2);
++
++int struct_ttyent_sz = sizeof(struct ttyent);
 +
  // ioctl arguments
 -unsigned struct_ifreq_sz = sizeof(struct ifreq);

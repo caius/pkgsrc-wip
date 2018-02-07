@@ -1,5 +1,6 @@
-$NetBSD: distinfo,v 1.2 2005/09/28 06:41:38 rillig Exp $
+$NetBSD$
 
-SHA1 (pysnmp-3.4.2.tar.gz) = 8350b7fc2366b6e3bc33a555f5017c6a17bdb872
-RMD160 (pysnmp-3.4.2.tar.gz) = aa40905324cedc21acfcc19ac26f8da0fc2defea
-Size (pysnmp-3.4.2.tar.gz) = 90872 bytes
+SHA1 (pysnmp-4.4.4.tar.gz) = 1218ce235c6b5ca930e23bd1fe06c93a9a63ed19
+RMD160 (pysnmp-4.4.4.tar.gz) = 46d24717c8d1a7341096cda9e57b98fdf041fc30
+SHA512 (pysnmp-4.4.4.tar.gz) = 960ac73b7356bb236d3853432c094d3aa86a343f5e211065689e6c784293748ec6f2c1c17bf9d96b4cbe2d9d476ebbacbaff4bed7d86370e5ef61e6f03ba8c0e
+Size (pysnmp-4.4.4.tar.gz) = 436318 bytes

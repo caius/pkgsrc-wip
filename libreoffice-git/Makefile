@@ -4,8 +4,8 @@ DISTNAME=	libreoffice
 PKGREVISION=	1
 CATEGORIES=	misc
 
-GIT_REPOSITORIES= core
-GIT_REPO.core=    git://gerrit.libreoffice.org/core.git
+GIT_REPOSITORIES=	core
+GIT_REPO.core=		git://gerrit.libreoffice.org/core.git
 
 #MASTER_SITES=	http://dev-www.libreoffice.org/bundles/
 
@@ -25,7 +25,7 @@ GCC_REQD+=	4.6
 
 CHECK_SHLIBS_SUPPORTED=	no
 # configure will be regenerated.
-CHECK_PORTABILITY_SKIP=configure
+CHECK_PORTABILITY_SKIP=	configure
 
 DIST_SUBDIR=	libreoffice
 
@@ -85,11 +85,11 @@ DIST_SUBDIR=	libreoffice
 #SITES.${md}=		http://dev-www.libreoffice.org/src/
 #.endfor
 
-#DISTFILES+=e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip
-#SITES.e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip=http://www.numbertext.org/linux/
+#DISTFILES+=	e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip
+#SITES.e7a384790b13c29113e22e596ade9687-LinLibertineG-20120116.zip= http://www.numbertext.org/linux/
 
-#DISTFILES+=185d60944ea767075d27247c3162b3bc-unowinreg.dll
-#SITES.185d60944ea767075d27247c3162b3bc-unowinreg.dll=http://download.go-oo.org/extern/
+#DISTFILES+=	185d60944ea767075d27247c3162b3bc-unowinreg.dll
+#SITES.185d60944ea767075d27247c3162b3bc-unowinreg.dll= http://download.go-oo.org/extern/
 
 .include "options.mk"
 
@@ -108,7 +108,7 @@ DEPENDS+=		${PYPKGPREFIX}-expat-[0-9]*:../../textproc/py-expat
 # is a no-go with normal pkgsrc wrappers.
 # dmake is slowly beeing removed from the LibreOffice build process
 # and this option will hopefully become unneeded in the future
-WRAPPER_SKIP_TRANSFORM=yes
+WRAPPER_SKIP_TRANSFORM=	yes
 
 USE_LANGUAGES+=		c c++
 
@@ -196,8 +196,8 @@ LO_PROGRAMS=		sbase scalc sdraw simpress smath soffice swriter
 LO_DESKTOP_FILES=	calc.desktop draw.desktop impress.desktop math.desktop \
 			startcenter.desktop writer.desktop
 
-#OBJDIR=			pkgsrcbuild
-#CONFIGURE_DIRS=		${OBJDIR}
+#OBJDIR=		pkgsrcbuild
+#CONFIGURE_DIRS=	${OBJDIR}
 CONFIGURE_SCRIPT=	${WRKSRC}core/autogen.sh
 
 #LD_LIBRARY_PATH+=	${WRKSRC}/instdir/sdk/lib:${WRKSRC}/instdir/ure/lib:${WRKSRC}/instdir/program

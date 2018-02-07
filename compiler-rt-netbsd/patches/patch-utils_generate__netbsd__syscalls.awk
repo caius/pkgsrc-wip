@@ -1,6 +1,6 @@
 $NetBSD$
 
---- utils/generate_netbsd_syscalls.awk.orig	2018-01-12 23:31:09.118429459 +0000
+--- utils/generate_netbsd_syscalls.awk.orig	2018-02-06 15:16:34.860396042 +0000
 +++ utils/generate_netbsd_syscalls.awk
 @@ -0,0 +1,2989 @@
 +#!/usr/bin/awk -f
