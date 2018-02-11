@@ -1,7 +1,8 @@
 # $NetBSD$
 VERSION=		1.4.14
+PKGREVISION=		3
 PKGNAME=		mosquitto-${VERSION}
-DISTNAME=		${PKGNAME}
+DISTNAME=		mosquitto-${PKGVERSION_NOREV}
 CATEGORIES=		net
 MASTER_SITES=		http://mosquitto.org/files/source/
 
