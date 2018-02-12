@@ -6,12 +6,12 @@ DISTNAME=		mosquitto-${PKGVERSION_NOREV}
 CATEGORIES=		net
 MASTER_SITES=		http://mosquitto.org/files/source/
 
-MAINTAINER=	amoibos@gmail.com
-HOMEPAGE=	http://mosquitto.org/
-COMMENT=	Open Source MQTT broker
-LICENSE=	eclipse-license
+MAINTAINER=		amoibos@gmail.com
+HOMEPAGE=		http://mosquitto.org/
+COMMENT=		Open Source MQTT broker
+LICENSE=		eclipse-license
 
-USE_LANGUAGES+=	c c++
+USE_LANGUAGES+=		c c++
 USE_TOOLS+=		cmake gmake
 
 MSQ_USER?=		mosquitto
@@ -34,7 +34,7 @@ post-install:
 		${DESTDIR}${PREFIX}/include/mosquittopp.h \
 		${DESTDIR}${PREFIX}/include/mosquitto_plugin.h
 	mkdir ${DESTDIR}${PREFIX}/share/examples/mosquitto
-	${INSTALL_DATA}	${WRKSRC}/pskfile.example \
+	${INSTALL_DATA} ${WRKSRC}/pskfile.example \
 		${WRKSRC}/pwfile.example \
 		${WRKSRC}/mosquitto.conf \
 		${WRKSRC}/aclfile.example\
