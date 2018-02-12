@@ -11,7 +11,7 @@
       <service_fmri value="svc:/system/filesystem/local"/>
     </dependency>
     <method_context>
-      <method_credential user='@MSQUSER@' group='@MSQGROUP@' privileges='basic,net_privaddr' />
+      <method_credential user='@MSQ_USER@' group='@MSQ_GROUP@' privileges='basic,net_privaddr' />
       <method_environment>
         <envvar name='PATH' value='@PREFIX@/sbin:@PREFIX@/bin:/sbin:/usr/sbin:/usr/bin' />
       </method_environment>
