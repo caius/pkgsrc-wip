@@ -8,8 +8,7 @@
 CONFIGFILE=/opt/local/etc/mosquitto.conf
 PIDFILE=/var/run/mosquitto.pid
 
-# Handle our 
-case $1 in 
+case $1 in
 'start')
         /opt/local/sbin/mosquitto -c $CONFIGFILE -d
         ;;
@@ -24,6 +23,6 @@ case $1 in
         echo "Usage: $0 { start | reload }"
         exit 1
         ;;
-esac    
+esac
 
 exit $?
