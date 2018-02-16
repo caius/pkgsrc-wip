@@ -5,12 +5,12 @@
 
 . /lib/svc/share/smf_include.sh
 
-CONFIGFILE=/opt/local/etc/mosquitto.conf
+CONFIGFILE=${PREFIX}/etc/mosquitto.conf
 PIDFILE=/var/run/mosquitto.pid
 
 case $1 in
 'start')
-        /opt/local/sbin/mosquitto -c $CONFIGFILE -d
+        ${PREFIX}/sbin/mosquitto -c $CONFIGFILE -d
         ;;
 
 'reload')
