@@ -5,24 +5,22 @@
 
 . /lib/svc/share/smf_include.sh
 
-CONFIGFILE=${PREFIX}/etc/mosquitto.conf
-PIDFILE=/var/run/mosquitto.pid
-
 case $1 in
 'start')
-        ${PREFIX}/sbin/mosquitto -c $CONFIGFILE -d
-        ;;
+  @PREFIX@/sbin/mosquitto -c @PKG_SYSCONFDIR@/mosquitto.conf -d
+  ;;
 
 'reload')
-        if [ -f "$PIDFILE" ]; then
-                /usr/bin/kill -HUP `/usr/bin/cat $PIDFILE`
-        fi
-        ;;
+  PIDFILE=@VARBASE@/run/mosquitto.pid
+  if [ -f "${PIDFILE}" ]; then
+    /usr/bin/kill -HUP $(/usr/bin/cat "${PIDFILE}")
+  fi
+  ;;
 
 *)
-        echo "Usage: $0 { start | reload }"
-        exit 1
-        ;;
+  echo "Usage: $0 { start | reload }"
+  exit 1
+  ;;
 esac
 
 exit $?
