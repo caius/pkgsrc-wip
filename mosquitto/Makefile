@@ -16,11 +16,15 @@ USE_TOOLS+=		cmake gmake
 
 MSQ_USER?=		mosquitto
 MSQ_GROUP?=		mosquitto
+
+PKG_GECOS.${MSQ_USER}=	Mosquitto server user
+PKG_SHELL.${MSQ_USER}=	${SH}
 PKG_GROUPS=		${MSQ_GROUP}
 PKG_USERS=		${MSQ_USER}:${MSQ_GROUP}
 PKG_GROUPS_VARS=	MSQ_GROUP
 PKG_USERS_VARS=		MSQ_USER
-BUILD_DEFS+=		MSQ_USER MSQ_GROUP
+FILES_SUBST+=		MSQ_USER=${MSQ_USER}
+FILES_SUBST+=		MSQ_GROUP=${MSQ_GROUP}
 
 EGDIR=			${PREFIX}/share/examples/mosquitto
 CONF_FILES=		${EGDIR}/mosquitto.conf ${PKG_SYSCONFDIR}/mosquitto.conf
