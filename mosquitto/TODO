@@ -1,0 +1,11 @@
+* mosquitto_pub & mosquitto_sub segfault
+
+        [root@mqtt1 ~]# mosquitto_sub --help
+        ld.so.1: mosquitto_sub: fatal: ../lib/libmosquitto.so.1: open failed: No such file or directory
+        Killed
+        [root@mqtt1 ~]# mosquitto_pub --help
+        ld.so.1: mosquitto_pub: fatal: ../lib/libmosquitto.so.1: open failed: No such file or directory
+        Killed
+
+* /var/spool/mosquitto isn't created
+* $PREFIX/lib/svc/method/mosquitto isn't created
